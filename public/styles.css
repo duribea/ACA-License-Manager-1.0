@@ -1,0 +1,410 @@
+body {
+    background-color: #192126;
+    color: white;
+    font-family: Arial, sans-serif;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+	padding-top: 60px;
+}
+
+/* Estilo de los títulos de los módulos */
+h1, h2, h3 {
+    color: white;
+    text-align: left; /* Asegura que los títulos de los módulos sean blancos */
+}
+
+/* Centrando el título principal del dashboard */
+h1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #192126; /* Color de fondo */
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 24px; /* Ajusta el tamaño del texto si es necesario */
+    z-index: 1000; /* Asegúrate de que el título esté encima de todo */
+    border-bottom: 2px solid #118EBF; /* Borde inferior */
+    margin: 0; /* Eliminar cualquier margen */
+}
+
+
+form, #clienteForm, #licenciaForm, #licenciasTabla, #gestionClientes, #centroForm, #gestionCentros, #estadoMensualForm, #resumenCentros {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #2E5159;
+    border: none; /* Sin borde */
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+input, select, textarea {
+    width: 100%;
+    max-width: 300px;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: none; /* Sin borde */
+    border-radius: 4px;
+    background-color: white; /* Fondo blanco */
+    color: #192126; /* Texto en color #192126 */
+}
+
+
+/* Inputs dentro de tablas */
+table input, table select, table textarea {
+    max-width: 150px;
+    margin-bottom: 0;
+}
+
+/* Estilos específicos para el estado mensual */
+.controles-estado-mensual {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.controles-estado-mensual select {
+    max-width: 200px;
+}
+
+.botones-estado-mensual {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+#estadoMensualTabla textarea {
+    min-height: 60px;
+    resize: vertical;
+}
+
+#estadoMensualTabla .analytics-check {
+    width: auto;
+    margin: 0;
+}
+
+#estadoMensualTabla .version-sistema {
+    width: 100px; /* Reducir el ancho de Version Sistema */
+}
+
+#estadoMensualTabla .comentarios {
+    width: 150px; /* Reducir el ancho de Comentarios */
+    resize: vertical; /* Permitir que el usuario ajuste el tamaño vertical */
+}
+
+/* Ampliar el ancho de la columna Cliente */
+#estadoMensualTabla th:nth-child(1),
+#estadoMensualTabla td:nth-child(1) {
+    width: 180px; /* Aumentar el ancho de la columna Cliente */
+}
+
+/* Ajustar el tamaño de la fuente para asegurar que el texto se vea bien */
+#estadoMensualTabla {
+    font-size: 0.9em; /* Reducir ligeramente el tamaño de fuente en la tabla */
+}
+
+#estadoMensualTabla .sistema-select {
+    width: 200px; /* Aumentar el ancho del select de sistema */
+    max-width: none; /* Eliminar el max-width para este elemento específico */
+}
+
+/* Reducir el ancho de la columna de fecha de instalación */
+#estadoMensualTabla th:nth-child(6),
+#estadoMensualTabla td:nth-child(6) {
+    width: 100px;
+}
+
+/* Ajustar el ancho de la columna del sistema de alimentación */
+#estadoMensualTabla th:nth-child(4),
+#estadoMensualTabla td:nth-child(4) {
+    width: 200px;
+    min-width: 200px;
+}
+
+
+
+button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* Hover para los botones */
+button:hover {
+    background-color: #45a049; /* Para botones generales */
+}
+
+button#exportarEstadoMensual:hover, button#copiarEstadoMensual:hover, button#exportarClientes:hover, button#copiarClientes:hover {
+    background-color: #0E7AA1; /* Hover específico para los botones solicitados */
+}
+
+/* Asegurar el centrado de los encabezados de las tablas en todas las vistas */
+#clientesTabla th, #estadoMensualTabla th, #centrosTabla th {
+    text-align: center; /* Centrar encabezados de tablas en los módulos de gestión */
+}
+
+/* Botones específicos del módulo "Estado mensual de centros" y "Gestión de clientes" */
+button#exportarEstadoMensual, button#copiarEstadoMensual, button#exportarClientes, button#copiarClientes {
+    background-color: #118EBF; /* Color de los botones solicitados */
+    color: white;
+}
+
+/* Estilo para los botones específicos */
+button#añadirCliente, button#añadirCentro, button#guardarEstadoMensual {
+    background-color: #F2441D;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+button#añadirCliente:hover, button#añadirCentro:hover, button#guardarEstadoMensual:hover {
+    background-color: #D83C18; /* Color al hacer hover sobre los botones */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #2C3E50;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #192126; /* Fondo de encabezados de tabla */
+    color: white; /* Texto blanco */
+    text-align: center; /* Centrar el texto en los encabezados de tablas */
+}
+
+#mensaje {
+    position: fixed; /* Fijar la posición del mensaje */
+    bottom: 20px; /* Ubicarlo en la parte inferior de la pantalla */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #34495E;
+    border-radius: 4px;
+    padding: 10px 20px;
+    color: white;
+    font-weight: bold;
+    display: none; /* Oculto por defecto */
+    z-index: 1000; /* Asegurar que esté encima de otros elementos */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    max-width: 90%;
+    text-align: center;
+}
+
+.guardar-btn, .eliminar-btn, .guardar-nueva-btn, .cancelar-btn {
+    padding: 5px 10px;
+    margin: 2px;
+}
+
+.eliminar-btn {
+    background-color: #f44336;
+}
+
+.eliminar-btn:hover {
+    background-color: #d32f2f;
+}
+
+#resumenCentros {
+    flex: 1;
+    background-color: #192126 !important;  /* Forzar el fondo más oscuro */
+    padding: 20px;
+    border-radius: 5px;
+    color: white !important;  /* Asegura que el texto sea visible */
+    display: block !important;
+}
+
+/* Texto en negrita para los nombres de los sistemas */
+#resumenCentros p {
+    font-weight: bold; /* Poner en negrita */
+}
+
+#resumenCentros h3 {
+    margin-top: 0;
+}
+
+#clientesTabla input[type="date"],
+#clienteForm input[type="date"] {
+    width: 100%;
+    max-width: 150px;
+}
+
+#gestionClientes {
+    margin-bottom: 20px;
+}
+
+.editar-cliente, .guardar-cliente {
+    background-color: #3498db;
+}
+
+.editar-cliente:hover, .guardar-cliente:hover {
+    background-color: #2980b9;
+}
+
+
+/* Estilos para el logo */
+#logo {
+    width: 50px; /* Ajusta el tamaño según sea necesario */
+    height: auto; /* Mantén la proporción del logo */
+    margin-right: 10px; /* Espacio entre el logo y el título */
+    vertical-align: middle; /* Alineación del logo con el texto */
+}
+
+#resumen-y-grafico {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;  /* Alineación vertical en la parte superior */
+    margin-bottom: 20px;  /* Espacio entre el resumen y el gráfico */
+}
+
+#graficoCentrosContainer {
+    flex: 2;
+    background-color: #192126 !important;  /* Forzar el fondo oscuro */
+    padding: 20px;
+    border-radius: 5px;
+    min-height: 300px !important;
+    margin-left: 20px;
+	display: none;  /* Oculto por defecto */
+}
+
+#graficoCentros {
+    width: 70% !important;
+    height: 70% !important;
+    padding: 20px;
+}
+
+/* Estilos para el dashboard */
+.dashboard-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    gap: 20px;
+}
+
+#resumenCentros {
+    flex: 1;
+    background-color: #192126;
+    padding: 20px;
+    border-radius: 5px;
+    color: white;
+    display: block;
+    height: auto;  /* Asegúrate de que se ajuste automáticamente al contenido */
+}
+
+#graficoCentrosContainer {
+    flex: 2;
+    background-color: #192126;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;  /* Posición relativa para el botón flotante */
+    min-height: 300px;  /* Altura mínima para que el gráfico tenga suficiente espacio */
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;  /* Alinear el gráfico verticalmente */
+}
+
+#graficoCentros {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+
+#descargarGrafico {
+    background-color: #118EBF;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    position: absolute;  /* Posición absoluta para que flote sobre el gráfico */
+    top: 10px;  /* Espacio desde la parte superior */
+    right: 10px;  /* Espacio desde la derecha */
+    z-index: 10;  /* Asegúrate de que esté sobre el gráfico */
+}
+
+#descargarGrafico:hover {
+    background-color: #0d7ca6;
+}
+
+/* Estilos para DataTables */
+.dataTables_wrapper {
+    background-color: #2E5159;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate {
+    color: white !important;
+}
+
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    background-color: white;
+    color: #192126;
+    border: none;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: white !important;
+    background-color: #118EBF !important;
+    border: none !important;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background-color: #0E7AA1 !important;
+    color: white !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background-color: #F2441D !important;
+    color: white !important;
+}
+
+/* Ajustar el color del texto de ordenamiento */
+table.dataTable thead th {
+    color: white;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Estilos para los íconos de ordenamiento */
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after {
+    color: white !important;
+}
+
+/* Ajustar el color del texto en la tabla */
+table.dataTable tbody td {
+    color: white;
+}

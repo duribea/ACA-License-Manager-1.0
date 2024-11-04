@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKVA Connect Analytics - Gestión de Licencias</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css">
+    <!-- jQuery (necesario para DataTables) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Botón de Logout -->
+    <style>
+        #logoutBtn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    z-index: 2000; /* Asegura que esté encima de otros elementos */
+}
+        #logoutBtn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+
+</head>
+<body>
+ <button id="logoutBtn">Logout</button>
+    <h1>
+        <img src="logo aca.png" alt="Logo AKVA Connect" id="logo" style="vertical-align: middle;">
+        AKVA Connect Analytics - Gestión de Licencias
+    </h1>
+    
+    <div id="mensaje"></div>
+	
+	
+    <div id="clienteForm">
+        <h2>Añadir Nuevo Cliente</h2>
+        <input type="text" id="nuevoClienteNombre" placeholder="Nombre del nuevo cliente">
+        <label for="nuevaFechaExpiracion">Fecha de expiración licencia:</label>
+        <input type="date" id="nuevaFechaExpiracion">
+        <input type="text" id="nuevaVersionAnalytics" placeholder="Versión Analytics">
+        <input type="text" id="nuevaVersionConnector" placeholder="Versión Connector">
+        <input type="text" id="nuevaVersionAdapter" placeholder="Versión Adapter">
+        <label for="nuevaFechaActualizacion">Fecha de actualización:</label>
+        <input type="date" id="nuevaFechaActualizacion">
+        <button id="añadirCliente">Añadir Cliente</button>
+    </div>
+
+  <div id="gestionClientes">
+    <h2>Gestión de Clientes</h2>
+    <button id="cargarClientes">Cargar Clientes</button>
+    <button id="copiarClientes">Copiar al Portapapeles</button>
+    <table id="clientesTabla" style="display: none;">
+        <thead>
+            <tr>
+                <th>Nombre Cliente</th>
+                <th>Fecha Expiración</th>
+                <th>Versión Analytics</th>
+                <th>Versión Connector</th>
+                <th>Versión Adapter</th>
+                <th>Fecha Actualización</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+    <div id="centroForm">
+        <h2>Añadir Nuevo Centro</h2>
+        <select id="clienteSelect"></select>
+        <input type="text" id="nombreCentro" placeholder="Nombre del centro">
+        <input type="text" id="nombrePonton" placeholder="Nombre del pontón">
+        <select id="sistemaAlimentacion"></select>
+        <input type="text" id="versionSistema" placeholder="Versión del sistema">
+        <label for="fechaInstalacionACA">Fecha de instalación ACA:</label>
+        <input type="date" id="fechaInstalacionACA">
+        <label for="fechaTermino">Fecha de término (opcional):</label>
+        <input type="date" id="fechaTermino">
+        <button id="añadirCentro">Añadir Centro</button>
+    </div>
+
+    <div id="gestionCentros">
+        <h2>Gestión de Centros</h2>
+        <select id="clienteGestion"></select>
+        <button id="cargarCentros">Cargar Centros</button>
+        <table id="centrosTabla" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Nombre Centro</th>
+                    <th>Nombre Pontón</th>
+                    <th>Sistema Alimentación</th>
+                    <th>Versión Sistema</th>
+                    <th>Fecha Instalación ACA</th>
+                    <th>Fecha Término</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="estadoMensualForm">
+        <h2>Estado Mensual de Centros</h2>
+        
+        <div class="controles-estado-mensual">
+            <select id="clienteEstadoMensual"></select>
+            <select id="añoEstadoMensual"></select>
+            <select id="mesEstadoMensual">
+                <option value="1">Enero</option>
+                <option value="2">Febrero</option>
+                <option value="3">Marzo</option>
+                <option value="4">Abril</option>
+                <option value="5">Mayo</option>
+                <option value="6">Junio</option>
+                <option value="7">Julio</option>
+                <option value="8">Agosto</option>
+                <option value="9">Septiembre</option>
+                <option value="10">Octubre</option>
+                <option value="11">Noviembre</option>
+                <option value="12">Diciembre</option>
+            </select>
+            <button id="cargarEstadoMensual">Cargar Estado Mensual</button>
+            <button id="exportarEstadoMensual" style="display: none;">Exportar CSV</button>
+            <button id="copiarEstadoMensual" style="display: none;">Copiar al Portapapeles</button>
+        </div>
+
+        <!-- Contenedor con el resumen de centros y gráfico -->
+        <div class="dashboard-container">
+            <div id="resumenCentros" style="display: none;"></div>
+          <div id="graficoCentrosContainer" style="position: relative; display:none;">
+    <button id="descargarGrafico" style="position: absolute; top: 10px; right: 10px;">Descargar gráfico</button>
+    <canvas id="graficoCentros"></canvas>
+</div>
+        </div>
+
+        <table id="estadoMensualTabla" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Centro</th>
+                    <th>Nombre Pontón</th>
+                    <th>Sistema Alimentación</th>
+                    <th>Versión Sistema</th>
+                    <th>Fecha Instalación ACA</th>
+                    <th>Fecha Término</th>
+                    <th>Estado</th>
+                    <th>Con Analytics</th>
+                    <th>Comentarios</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button id="guardarEstadoMensual" style="display: none;">Guardar Cambios</button>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
